@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title> @yield('title') </title>
+        <title> @yield('title', config('app.name')) </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,8 +26,10 @@
 
         <footer>
             <p>
-                &copy; Copyright {{date('Y')}} &middot; 
-                <a href="/about-us"> About Us </a>
+                &copy; Copyright {{date('Y')}} 
+                @if (! Route::is("app_about"))
+                    &middot; <a href="{{ route("app_about") }}"> About Us </a>
+                @endif
             </p>
         </footer>
 
